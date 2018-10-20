@@ -25,10 +25,12 @@ public class Practice06Test {
 	
 	
 	public boolean isPalindrome(String item) {
+		String lowerCase = item.replaceAll("\\s+", "").toLowerCase();
+		String newItem = lowerCase.replaceAll("\\W", "");
 		clearData();
-		for (int i = 0; i < item.length(); i++) {
-			stack.push(item.substring(i, i+1));
-			queue.enqueue(item.substring(i, i+1));
+		for (int i = 0; i < newItem.length(); i++) {
+			stack.push(newItem.substring(i, i+1));
+			queue.enqueue(newItem.substring(i, i+1));
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
@@ -40,6 +42,12 @@ public class Practice06Test {
 		// At this point, the stack AND the queue should be empty. But check in case...
 		if (!stack.empty() || ! queue.empty())
 			return false;
+
+		
+		// for(int j=0; j<lowerCase.length(); j++){
+		// 	if (Character.toString(lowerCase.charAt(j))!= Character.toString(lowerCase.charAt(lowerCase.length() -j)))
+		// 		return false;
+		// }
 		
 		return true;
 	}
